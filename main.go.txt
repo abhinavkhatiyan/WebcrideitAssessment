@@ -1,0 +1,28 @@
+package main
+
+import (
+	"log"
+	"os"
+
+	"github.com/sirupsen/logrus"
+)
+
+func main() {
+	// Configure log output file
+	file, err := os.OpenFile("app.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	// Configure Logrus
+	logger := logrus.New()
+	logger.Out = file
+	logger.SetFormatter(&logrus.JSONFormatter{})
+
+	// Logging different levels
+	logger.Info("This is an INFO log")
+	logger.Warn("This is a WARN log")
+	logger.Debug("This is a DEBUG log")
+	logger.Error("This is an ERROR log")
+}

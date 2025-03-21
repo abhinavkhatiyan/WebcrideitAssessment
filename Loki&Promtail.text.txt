@@ -1,0 +1,3 @@
+docker network create loki
+docker run -d --name=loki --network=loki -p 3100:3100 grafana/loki
+docker run -d --name=grafana --network=loki -p 3000:3000 grafana/grafana

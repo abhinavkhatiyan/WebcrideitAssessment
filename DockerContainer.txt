@@ -1,0 +1,2 @@
+docker build -t golang-log-service .
+docker run -d --name log-service golang-log-service
